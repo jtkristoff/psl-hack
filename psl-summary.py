@@ -68,7 +68,7 @@ for line in psl:
     if line.startswith('*.'):
         num_of_wildcards += 1
 
-    if '.' in line:
+    if '.' not in line:
         num_of_tlds += 1
 
     if fqdn_to_match:
