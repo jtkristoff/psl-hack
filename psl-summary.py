@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import re
 import sys
 
 # TODO: best match, see https://github.com/publicsuffix/list/wiki/Format#formal-algorithm
@@ -40,7 +39,7 @@ num_of_tlds = 0
 try:
     psl = open(sys.argv[1])
 except:
-    print("Unable to open {sys.argv[1]", file=sys.stderr)
+    print(f"Unable to open {sys.argv[1]}", file=sys.stderr)
     sys.exit(1)
 
 for line in psl:
@@ -72,8 +71,8 @@ for line in psl:
         num_of_tlds += 1
 
     if fqdn_to_match:
-        suffix_match(rule)
         exact_match(rule)
+        suffix_match(rule)
         exception_match(rule)
         wildcard_match(rule)
 
