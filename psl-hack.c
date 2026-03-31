@@ -30,6 +30,10 @@ int main() {
             continue;
         if (line_str[0] == '/' && line_str[1] == '/')
             continue;
+        if (line_str[0] == '#')
+            continue;
+        if (isspace(line_str[0]))
+           continue;
         if (is_blank_line(line_str))
             continue;
 
@@ -37,11 +41,11 @@ int main() {
 
         char *token = strtok(line_str, ",");
         if (token == NULL) {
-            fprintf(stderr, "Missing gtld on line %d\n", line_num);
+            fprintf(stderr, "Missing suffix on line %d\n", line_num);
             continue;
         }
-        char *gtld = strdup(token);
-        lower_string(gtld);
+        char *suffix = strdup(token);
+        lower_string(suffix);
 
         token = strtok(NULL, ",");
         if (token == NULL) {
@@ -54,9 +58,9 @@ int main() {
         int tag_index = find_or_add_tag(tag);
         tag_counts[tag_index]++;
  
-        printf("%d: %s,%s\n", line_num, gtld, tag);
+        printf("%d: %s,%s\n", line_num, suffix, tag);
 
-        free(gtld);
+        free(suffix);
         free(tag);
         line_num++;
     }
