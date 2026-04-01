@@ -13,7 +13,7 @@ int tag_counts[MAX_TAGS];
 int num_of_tags = 0;
 
 int main() {
-    int line_num = 1;
+    int line_num = 0;
 
     FILE *psl_fp = fopen("psl.csv", "r");
     if (psl_fp == NULL) {
@@ -26,6 +26,7 @@ int main() {
     ssize_t length;
 
     while ((length = getline(&line_str, &capacity, psl_fp)) != -1) {
+        line_num++;
         if (line_str[0] == '\n')
             continue;
         if (line_str[0] == '/' && line_str[1] == '/')
@@ -62,7 +63,6 @@ int main() {
 
         free(suffix);
         free(tag);
-        line_num++;
     }
 
     for (int i = 0; i < num_of_tags; i++)
