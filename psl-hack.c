@@ -36,7 +36,6 @@ int main() {
            continue;
         if (is_blank_line(line_str))
             continue;
-        line_num++;
 
         line_str[strcspn(line_str, "\n")] = '\0';
 
@@ -53,6 +52,9 @@ int main() {
             fprintf(stderr, "Missing tag on line %d\n", line_num);
             continue;
         }
+
+        line_num++;
+
         char *tag = strdup(token);
         lower_string(tag);
 
