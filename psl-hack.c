@@ -26,7 +26,6 @@ int main() {
     ssize_t length;
 
     while ((length = getline(&line_str, &capacity, psl_fp)) != -1) {
-        line_num++;
         if (line_str[0] == '\n')
             continue;
         if (line_str[0] == '/' && line_str[1] == '/')
@@ -37,6 +36,7 @@ int main() {
            continue;
         if (is_blank_line(line_str))
             continue;
+        line_num++;
 
         line_str[strcspn(line_str, "\n")] = '\0';
 
